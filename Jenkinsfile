@@ -1,8 +1,8 @@
 pipeline {
     agent any
     
-     environment{
- SCANNER_HOME= tool 'sonar-scanner'
+     environment{ 
+ SCANNER_HOME= tool 'sonar-scanner' 
  }
 
     stages {
@@ -43,10 +43,10 @@ pipeline {
             steps { 
                 withSonarQubeEnv( 'sonar-server'){
                        sh ''' $SCANNER_HOME/bin/sonar-scanner -Dsonar.projectName=python-project \
-            -Dsonar.projectKey=python-project \ 
-            -Dsonar.sources=. \
-            -Dsonar.exclusions=venv/** \
-            -Dsonar.python.coverage.reportPaths=coverage.xml'''
+                              -Dsonar.projectKey=python-project \ 
+                              -Dsonar.sources=. \
+                             -Dsonar.exclusions=venv/** \
+                             -Dsonar.python.coverage.reportPaths=coverage.xml'''
 
                 }
 
