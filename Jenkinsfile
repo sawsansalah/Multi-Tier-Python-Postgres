@@ -31,7 +31,7 @@ pipeline {
         
                 pytest  --cov=app -cov-report=xml  ##run test cases that inside app folder and provide result as xml
  
-                pytest  --cov=app  --cov-report=term-missing  --disable-warnings  ##run test case only in ui without report
+                ##pytest  --cov=app  --cov-report=term-missing  --disable-warnings  ##run test case only in ui without report
 
                 "
 
