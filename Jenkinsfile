@@ -23,43 +23,28 @@ pipeline {
             }
         }
 
-         stage('Tests') {
+      stage('Test') {
             steps {
-                sh '''
-                bash -c "
-                          source venv/bin/activate
-        
-                          pytest  --cov=app --cov-report=xml  
-
-                "
-                
-
-                '''
-            }
-        }
-
-
-
-    stage('SonarQube Analysis') {
-        steps {
-        withSonarQubeEnv('sonar-server') {
-
-        sh ''' 
-        $SCANNER_HOME/bin/sonar-scanner -Dsonar.projectName=python-project \
-        -Dsonar.projectKey=python-project \
-        -Dsonar.sources=. \
-        -Dsonar.exclusions=venv/**\
-
-        -Dsonar.python.coverage.reportPaths=coverage.xml 
-        '''
-
-
-        }
-        }
-        }
-
-
-
-       
+            sh '''
+            bash -c "
+            source venv/bin/activate
+            pytest --cov=app --cov-report=xml
+            pytest --cov=app --cov-report=term-missing --disable-warnings
+            "
+            '''
     }
-}
+    }
+    
+    stage('Sonar') {
+    steps {
+    withSonarQubeEnv('sonar-server') {
+    sh ''' $SCANNER_HOME/bin/sonar-scanner -Dsonar.projectKey=Python-project \
+    -Dsonar.projectName=Python-project \
+    -Dsonar.exclusions=venv/** \
+    -Dsonar.sources=. \
+    -Dsonar.python.coverage.reportPaths=coverage.xml'''
+    }
+    }
+    }
+    }
+    }
