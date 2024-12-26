@@ -32,9 +32,15 @@ pipeline {
                           pytest  --cov=app --cov-report=xml  
 
                 "
+                
 
                 '''
             }
+        }
+        stage ('convert') {
+            steps {
+          sh "pipenv run coverage xml -i"
+        }
         }
 
 
@@ -48,7 +54,7 @@ pipeline {
         -Dsonar.sources=. \
         -Dsonar.exclusions=venv/**\
 
-        -Dsonar.python.coverage.reportPaths=**/coverage.xml 
+        -Dsonar.python.coverage.reportPaths=coverage.xml 
         '''
 
 
