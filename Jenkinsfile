@@ -47,6 +47,8 @@ pipeline {
         sh ''' $SCANNER_HOME/bin/sonar-scanner -Dsonar.projectName=python-project \
         -Dsonar.projectKey=python-project \
         -Dsonar.sources=. \
+        -Dsonar.exclusions=venv/**/
+
         -Dsonar.python.coverage.reportPaths=coverage.xml '''
 
 
