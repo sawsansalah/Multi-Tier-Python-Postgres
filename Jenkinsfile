@@ -44,12 +44,14 @@ pipeline {
         steps {
         withSonarQubeEnv('sonar-server') {
 
-        sh ''' $SCANNER_HOME/bin/sonar-scanner -Dsonar.projectName=python-project \
+        sh ''' 
+        $SCANNER_HOME/bin/sonar-scanner -Dsonar.projectName=python-project \
         -Dsonar.projectKey=python-project \
         -Dsonar.sources=. \
         -Dsonar.exclusions=venv/**\
 
-        -Dsonar.python.coverage.reportPaths=coverage.xml '''
+        -Dsonar.python.coverage.reportPaths=coverage.xml 
+        '''
 
 
         }
