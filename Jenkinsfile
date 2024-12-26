@@ -30,6 +30,7 @@ pipeline {
                           source venv/bin/activate
         
                           pytest  --cov=app --cov-report=xml  
+                          pipenv run coverage xml -i
 
                 "
                 
@@ -37,11 +38,7 @@ pipeline {
                 '''
             }
         }
-        stage ('convert') {
-            steps {
-          sh "pipenv run coverage xml -i"
-        }
-        }
+
 
 
     stage('SonarQube Analysis') {
