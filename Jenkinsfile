@@ -30,7 +30,6 @@ pipeline {
                           source venv/bin/activate
         
                           pytest  --cov=app --cov-report=xml  
-                          pipenv run coverage xml -i
 
                 "
                 
