@@ -48,7 +48,7 @@ pipeline {
         -Dsonar.sources=. \
         -Dsonar.exclusions=venv/**\
 
-        -Dsonar.python.coverage.reportPaths=./coverage.xml 
+        -Dsonar.python.coverage.reportPaths=**/coverage.xml 
         '''
 
 
